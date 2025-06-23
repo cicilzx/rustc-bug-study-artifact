@@ -46,7 +46,7 @@ docker run -it --rm \
   -v $(pwd)/scripts:/app/scripts \
   -v $(pwd)/Test_Case_Characteristics:/app/Test_Case_Characteristics \
   -v $(pwd)/test_cases:/app/test_cases \
-  -v $(pwd)/test_cases:/app/data \
+  -v $(pwd)/data:/app/data \
   -w /app \
   rustc-bug-study
 ```
@@ -80,7 +80,7 @@ In the following section, we provide instructions for reproducing the results pr
 To reproduce Table 2, please run the following script to print statistics related to our bug collection phases.
 
 ```sh
-python ./scripts/status.py
+python3 ./scripts/status.py
 ```
 
 The above script prints the following:
@@ -102,7 +102,7 @@ Total                    571
 
 In the first research question, we compute the distribution of bug causes. Specifically, the script reproduces Table 3.
 ```sh
-python ./scripts/rq1_causes.py
+python3 ./scripts/rq1_causes.py
 ```
 
 The above script prints the following:
@@ -134,7 +134,7 @@ Total                              301   100.00%
 As for the bug prone compilation stages, please run the following script to reproduce Fig. 4 (a):
 
 ```sh
-python ./scripts/rq1_components_a.py
+python3 ./scripts/rq1_components_a.py
 ```
 
 The above script prints the following:
@@ -182,7 +182,7 @@ Total                                  301     100.00%
 
 similarly, please run the following script to reproduce Fig. 4 (b):
 ```bash
-python ./scripts/rq1_components_b.py
+python3 ./scripts/rq1_components_b.py
 ```
 
 The above script prints the following:
@@ -242,8 +242,8 @@ Subtotal                                             17      16.04%
 ### Data Visualization (Optional)
 Optionally, the following script can plot Fig. 4 (a) and Fig. 4 (b) and save them as `./Fig4a.pdf` and `./Fig4b.pdf`.
 ```sh
-python ./plot/fig4a.py
-python ./plot/fig4b.py
+python3 ./plot/fig4a.py
+python3 ./plot/fig4b.py
 ```
 
 
@@ -251,7 +251,7 @@ python ./plot/fig4b.py
 In the second research question, we compute the distribution of bug symptoms. Specifically, the following two script reproduces Table 4.
 
 ```sh
-python ./scripts/rq2_a.py
+python3 ./scripts/rq2_a.py
 ```
 This script reproduces Table 4 by presenting the detailed breakdown of bug symptoms. It categorizes and counts each sub-type of symptom observed in the dataset.
 It prints the following:
@@ -286,7 +286,7 @@ Total                                                       301     100.00%
 The following script also reproduces Table 4, but focuses on showing the joint distribution and proportions of bug symptoms and their corresponding causes, providing a cross-tabulation of these two dimensions.
 
 ```sh
-python ./scripts/rq2_b.py
+python3 ./scripts/rq2_b.py
 ```
 
 It prints the following:
@@ -334,7 +334,7 @@ In the third research question, we analyz the test case characteristics.
 To reproduce Table 5, please run the following script to get the LOC information:
 
 ```sh
-python ./scripts/rq3_loc.py
+python3 ./scripts/rq3_loc.py
 ```
 
 It prints the following:
@@ -356,7 +356,7 @@ Max                                123
 
 To reproduce Table 6, please run the following script to get the information of `Item` node:
 ```sh
-python ./scripts/rq3_ast_item.py
+python3 ./scripts/rq3_ast_item.py
 ```
 
 It prints the following:
@@ -383,7 +383,7 @@ Other                    0        0.00%       0.00          0
 
 To reproduce Table 6, please run the following script to get the information of `Type` node:
 ```sh
-python ./scripts/rq3_ast_type.py
+python3 ./scripts/rq3_ast_type.py
 ```
 It prints the following:
 ```
@@ -422,7 +422,7 @@ In the last research question, we analyze the status of existing techniques.
 
 To reproduce Fig. 10(a), please run the following script to get the distribution of bug symptoms across existing tools:
 ```sh
-python ./scripts/rq4_a.py
+python3 ./scripts/rq4_a.py
 ```
 It prints the following:
 ```
@@ -458,7 +458,7 @@ Subtotal                                         15
 
 To reproduce Fig. 10(b), please run the following script to get the distribution of bug causes across testing tools:
 ```sh
-python ./scripts/rq4_b.py
+python3 ./scripts/rq4_b.py
 ```
 It prints the following:
 ```
@@ -495,6 +495,6 @@ Subtotal                                            123
 ### Data Visualization (Optional)
 Optionally, the following script can plot Fig. 10 (a) and Fig. 10 (b) and save them as `./Fig10a.pdf` and `./Fig10b.pdf`.
 ```sh
-python ./plot/fig10a.py
-python ./plot/fig10b.py
+python3 ./plot/fig10a.py
+python3 ./plot/fig10b.py
 ```
