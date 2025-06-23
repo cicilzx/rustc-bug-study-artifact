@@ -28,7 +28,7 @@ def print_stats(name, line_counts):
     print()
 
 if __name__ == '__main__':
-    df = pd.read_csv('./all_issues.csv')
+    df = pd.read_csv('./data/all_issues.csv')
     valid_df = df[df['Status'] == 'valid']
     
     original_counts = count_lines_in_series(valid_df['Test case (original)'])

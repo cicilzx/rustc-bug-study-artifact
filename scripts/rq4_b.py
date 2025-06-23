@@ -2,7 +2,7 @@ import pandas as pd
 from collections import defaultdict
 
 # Load data
-df = pd.read_csv('./all_issues.csv')
+df = pd.read_csv('./data/all_issues.csv')
 
 # Only keep valid issues
 df = df[df['Status'] == 'valid']

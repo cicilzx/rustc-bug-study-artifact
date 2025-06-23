@@ -167,14 +167,14 @@ def print_others(input_file):
 
 
 if __name__ == "__main__":
-    print_unstable_features("./all_issues.csv")
+    print_unstable_features("./data/all_issues.csv")
     print()
 
-    print_flag("./all_issues.csv")
+    print_flag("./data/all_issues.csv")
     print()
 
-    print_trait("./all_issues.csv")
+    print_trait("./data/all_issues.csv")
     print()
 
-    print_others("./all_issues.csv")
+    print_others("./data/all_issues.csv")
     print()

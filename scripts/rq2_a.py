@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load CSV
-df = pd.read_csv('./all_issues.csv')
+df = pd.read_csv('./data/all_issues.csv')
 
 # Ensure required columns exist
 required_cols = ['Symptoms', 'Status', 'Test validity']

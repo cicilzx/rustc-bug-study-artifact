@@ -2,7 +2,7 @@ import pandas as pd
 from collections import defaultdict
 
 # Read data
-df = pd.read_csv('./all_issues.csv')
+df = pd.read_csv('./data/all_issues.csv')
 
 # Check necessary columns
 required_cols = ['Bug Cause', 'Status', 'Stage']

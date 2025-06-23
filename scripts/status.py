@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file
-df = pd.read_csv('./all_issues.csv')
+df = pd.read_csv('./data/all_issues.csv')
 
 # Ensure the 'Status' column exists
 if 'Status' not in df.columns:

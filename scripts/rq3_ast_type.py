@@ -2,7 +2,7 @@ import csv
 from collections import defaultdict
 
 # 设置 CSV 文件路径
-csv_file_path = "./type_node_counts.csv"
+csv_file_path = "./data/type_node_counts.csv"
 
 # 存储每个节点类型的统计信息
 node_stats = defaultdict(lambda: {
