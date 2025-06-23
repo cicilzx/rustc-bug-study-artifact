@@ -33,6 +33,24 @@ There are two ways to run this project: using Docker or running it directly on a
 
 A pre-configured Docker environment can simplify setup and ensure compatibility across systems. You can use the provided `Dockerfile` to build the environment with all necessary dependencies.
 
+To build the Docker image named `rustc-bug-study` from source, run the following command (estimated running time: ~5 min)
+```bash
+docker build -t rustc-bug-study .
+```
+
+Run the following command to create a new container.
+```bash
+docker run -it --rm \
+  -v $(pwd)/data_collection:/app/data_collection \
+  -v $(pwd)/plot:/app/plot \
+  -v $(pwd)/scripts:/app/scripts \
+  -v $(pwd)/Test_Case_Characteristics:/app/Test_Case_Characteristics \
+  -v $(pwd)/test_cases:/app/test_cases \
+  -w /app \
+  rustc-bug-study
+```
+
+
 ### Option 2: Run Locally
 
 To run the project locally, your system should meet the following requirements:
