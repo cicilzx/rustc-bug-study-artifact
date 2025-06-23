@@ -97,6 +97,19 @@ Valid                    301
 Total                    571
 ```
 
+### Optional Step: Crawling GitHub Issues
+
+**Running the crawler is not required for the subsequent steps.** Crawling can be time-consuming, and the collected data only contains raw GitHub issue information, without our annotations for bug causes, symptoms, etc.
+
+To ensure consistency, we have already provided the annotated CSV files in this artifact. You can directly proceed to the reproduction steps using the provided `./data/all_issues.csv` file.
+
+If you still wish to crawl the issues yourself, please run the following scripts.
+
+**Note**: Please replace `<output_path>` with your desired output directory and `<token>` with your [GitHub authentication token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+```bash
+cd data_collection
+python3 main.py issue <output_path> <token>
+```
 
 ## RQ1: Bug Causes (Section 3)
 
