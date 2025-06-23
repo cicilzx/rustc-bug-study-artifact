@@ -1,0 +1,9 @@
+[package]
+name = "Test_Case_Characteristics"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+syn = { version = "2.0.17", features = [ "full", "visit" ] }
+walkdir = "2.3"
+csv = "1.1"
