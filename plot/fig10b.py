@@ -58,4 +58,4 @@ if __name__ == '__main__':
     plt.tight_layout()
 
     # Save figure
-    plt.savefig(f"Fig10b.pdf", dpi=200, bbox_inches='tight')
+    plt.savefig(f"./plot/Fig10b.pdf", dpi=200, bbox_inches='tight')

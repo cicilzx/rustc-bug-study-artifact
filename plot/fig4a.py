@@ -59,4 +59,4 @@ if __name__ == '__main__':
     plt.xlim(0, 165)
 
     plt.tight_layout()
-    plt.savefig(f"Fig4a.pdf", dpi=200, bbox_inches='tight')
+    plt.savefig(f"./plot/Fig4a.pdf", dpi=200, bbox_inches='tight')

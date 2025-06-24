@@ -103,13 +103,15 @@ Total                    571
 
 To ensure consistency, we have already provided the annotated CSV files in this artifact. You can directly proceed to the reproduction steps using the provided `./data/all_issues.csv` file.
 
-If you still wish to crawl the issues yourself, please run the following scripts.
+If you still want to crawl the issues yourself, please run the following scripts.
 
-**Note**: Please replace `<output_path>` with your desired output directory and `<token>` with your [GitHub authentication token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+**Note**: Please replace `<token>` with your [GitHub authentication token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 ```bash
 cd data_collection
-python3 main.py issue <output_path> <token>
+python3 main.py issue ./all_issues.csv <token>
 ```
+
+The generated `all_issues.csv` file would be stored in `./rustc-bug-study-artifact/data_collection/all_issues.csv`.
 
 ## RQ1: Bug Causes (Section 3)
 
@@ -253,11 +255,12 @@ Subtotal                                             17      16.04%
 ```
 
 ### Data Visualization (Optional)
-Optionally, the following script can plot Fig. 4 (a) and Fig. 4 (b) and save them as `./Fig4a.pdf` and `./Fig4b.pdf`.
+Optionally, the following script can plot Fig. 4 (a) and Fig. 4 (b) and save them as `./plot/Fig4a.pdf` and `./plot/Fig4b.pdf`.
 ```sh
 python3 ./plot/fig4a.py
 python3 ./plot/fig4b.py
 ```
+If you are using the Docker container, the files `Fig4a.pdf` and `Fig4b.pdf` will be generated inside the container and can be directly accessed from your host machine in the `./rustc-bug-study-artifact/plot/` directory.
 
 
 ## RQ2: Bug Symptoms (Section 4)
@@ -427,6 +430,8 @@ cargo run
 ```
 Then, two files (`item_node_counts.csv` and `type_node_counts.csv`) will be saved in `./Test_Case_Characteristics` folder, which is same as `./item_node_counts.csv` and `./type_node_counts.csv`.
 
+If you are using the Docker container, these files can be directly accessed from your host machine in the `./rustc-bug-study-artifact/Test_Case_Characteristics/` directory.
+
 
 
 ## RQ4: Status of Existing Techniques (Section 6)
@@ -511,3 +516,4 @@ Optionally, the following script can plot Fig. 10 (a) and Fig. 10 (b) and save t
 python3 ./plot/fig10a.py
 python3 ./plot/fig10b.py
 ```
+If you are using the Docker container, the files `Fig10a.pdf` and `Fig10b.pdf` will be generated inside the container and can be directly accessed from your host machine in the `./rustc-bug-study-artifact/plot/` directory.
