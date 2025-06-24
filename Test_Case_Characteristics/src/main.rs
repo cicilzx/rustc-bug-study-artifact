@@ -143,7 +143,7 @@ fn process_file(path: &Path, item_wtr: &mut Writer<File>, item_headers: &Vec<Str
 }
 
 fn main() {
-    let dir_path = "/home/cici/rustc_bug_study/test_cases"; 
+    let dir_path = "../test_cases"; 
     let item_csv_path = "item_node_counts.csv";
     let type_csv_path = "type_node_counts.csv";
 
