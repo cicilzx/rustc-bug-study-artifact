@@ -1,4 +1,4 @@
-# Overview
+# Artifact: An Empirical Study of Rust-Specific Bugs in the rustc Compiler
 
 This is the artifact for the OOPSLA'25 paper titled "An Empirical Study of Rust-Specific Bugs in the rustc Compiler".
 
