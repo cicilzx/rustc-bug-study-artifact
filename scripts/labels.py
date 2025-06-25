@@ -1,8 +1,8 @@
-import csv
+import csv 
 import ast
 from collections import Counter
 
-# 有序目标标签列表（保持顺序）
+# Ordered target label list (preserving order)
 target_labels = [
     'A-HIR', 'A-THIR', 'A-MIR', 'A-mir-opt', 'A-mir-opt-inlining',
     'A-mir-opt-GVN', 'A-mir-opt-nrvo', 'A-stable-MIR', 'A-type-system',
@@ -12,10 +12,10 @@ target_labels = [
     'A-lifetimes', 'A-borrow-checker'
 ]
 
-# 转为集合以加快查找
+# Convert to set for faster lookup
 target_label_set = set(target_labels)
 
-# 需要在这些标签后插入横线
+# Insert a horizontal line after these labels
 split_labels = {'A-THIR', 'A-stable-MIR', 'A-coherence'}
 
 label_counter = Counter()
@@ -33,10 +33,10 @@ with open('./data/all_issues.csv', newline='', encoding='utf-8') as csvfile:
                     if label in target_label_set:
                         label_counter[label] += 1
             except Exception:
-                print("解析出错，跳过：", labels_str)
+                print("Parse error, skipped:", labels_str)
                 continue
 
-# 打印输出，含分隔横线
+# Print output with separators
 print(f"{'Label':<30}Count")
 print("=" * 40)
 for label in target_labels:

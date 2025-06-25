@@ -82,6 +82,39 @@ To reproduce Table 1, please run the following script to print statistics of our
 python3 ./scripts/labels.py
 ```
 
+The above script prints the following:
+```
+Label                         Count
+========================================
+A-HIR                         20
+A-THIR                        1
+----------------------------------------
+A-MIR                         43
+A-mir-opt                     78
+A-mir-opt-inlining            23
+A-mir-opt-GVN                 0
+A-mir-opt-nrvo                0
+A-stable-MIR                  1
+----------------------------------------
+A-type-system                 25
+A-inference                   29
+A-closures                    29
+A-coercions                   13
+A-const-generics              70
+A-DSTs                        0
+A-zst                         0
+A-trait-system                77
+A-impl-trait                  68
+A-trait-objects               27
+A-auto-traits                 14
+A-implied-bounds              9
+A-coinduction                 0
+A-coherence                   14
+----------------------------------------
+A-lifetimes                   70
+A-borrow-checker              45
+```
+
 To reproduce Table 2, please run the following script to print statistics related to our bug collection phases.
 
 ```bash
@@ -267,6 +300,9 @@ python3 ./plot/fig4b.py
 ```
 If you are using the Docker container, the files `Fig4a.pdf` and `Fig4b.pdf` will be generated inside the container and can be directly accessed from your host machine in the `./rustc-bug-study-artifact/plot/` directory.
 
+**NOTE:** When generating plots, you might see warnings like the following:
+`findfont: Generic family 'sans-serif' not found because none of the following families were found: Arial, DejaVu Sans, Liberation Sans, Bitstream Vera Sans, sans-serif`. This warning is harmless and does not affect the correctness or display of the resulting PDF plots. This message can be ignored.
+
 
 ## RQ2: Bug Symptoms (Section 4)
 In the second research question, we compute the distribution of bug symptoms. Specifically, the following two script reproduces Table 4.
@@ -432,6 +468,54 @@ To reproduce Table 7, please run the folllowing script to get all the informatio
 python3 ./scripts/rq3_features.py
 ```
 
+It prints the following:
+```
+Top 5 unstable features:
+Feature Line                                       Count Proportion
+----------------------------------------------------------------------
+#![feature(generic_const_exprs)]                      13     17.81%
+#![feature(type_alias_impl_trait)]                    11     15.07%
+#![feature(core_intrinsics)]                           9     12.33%
+#![feature(custom_mir)]                                8     10.96%
+#![feature(async_closure)]                             3      4.11%
+
+Number of valid rows with non-empty 'unstable features' (X): 73
+Ratio (X / valid 'Status'): 24.25%
+--------------------------------------------------------------------------------
+Top 5 flags:
+Flag                                     Count Proportion
+------------------------------------------------------------
+-Zmir-opt-level=X                           26     45.61%
+-Zmir-enable-passes=+X                       9     15.79%
++nightly                                     8     14.04%
+-Copt-level=X                                8     14.04%
+--edition=X                                  7     12.28%
+
+Number of valid rows with non-empty 'command' (X): 57
+Ratio (X / valid 'Status'): 18.94%
+--------------------------------------------------------------------------------
+Top 5 traits:
+Trait                          Count Proportion
+--------------------------------------------------
+Sized                             32     49.23%
+FnOnce                             8     12.31%
+Iterator                           5      7.69%
+Copy                               4      6.15%
+Clone                              3      4.62%
+
+Number of valid rows with non-empty 'trait' (X): 65
+Ratio (X / valid 'Status'): 21.59%
+--------------------------------------------------------------------------------
+Feature     Count  Frequency
+------------------------------
+Lifetime      104     34.55%
+std            56     18.60%
+dyn            30      9.97%
+async          22      7.31%
+core           19      6.31%
+--------------------------------------------------------------------------------
+```
+
 ### Parsing AST (Optional)
 Optionally, if you want to parse the AST and get all the information, please run the Rust project in `Test_Case_Characteristics`. The script is as follows:
 ```bash
@@ -442,6 +526,7 @@ Then, two files (`item_node_counts.csv` and `type_node_counts.csv`) will be save
 
 If you are using the Docker container, these files can be directly accessed from your host machine in the `./rustc-bug-study-artifact/Test_Case_Characteristics/` directory.
 
+**IMPORTANT NOTE:** During the execution of `cargo run`, you may encounter log messages such as *Failed to parse file*. This behavior is expected. As mentioned in our paper, a small number of files fail during AST parsing. As long as the final outputs `./Test_Case_Characteristics/item_node_counts.csv` and `./Test_Case_Characteristics/type_node_counts.csv` match the corresponding files provided in the artifact directory: `./item_node_counts.csv` and `./type_node_counts.csv`, the process has completed as intended and the results are correct.
 
 
 ## RQ4: Status of Existing Techniques (Section 6)
@@ -527,3 +612,6 @@ python3 ./plot/fig10a.py
 python3 ./plot/fig10b.py
 ```
 If you are using the Docker container, the files `Fig10a.pdf` and `Fig10b.pdf` will be generated inside the container and can be directly accessed from your host machine in the `./rustc-bug-study-artifact/plot/` directory.
+
+**NOTE:** When generating plots, you might see warnings like the following:
+`findfont: Generic family 'sans-serif' not found because none of the following families were found: Arial, DejaVu Sans, Liberation Sans, Bitstream Vera Sans, sans-serif`. This warning is harmless and does not affect the correctness or display of the resulting PDF plots. This message can be ignored.

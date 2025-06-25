@@ -50,6 +50,7 @@ def print_unstable_features(input_file):
     print()
     print(f"Number of valid rows with non-empty 'unstable features' (X): {valid_with_unstable_count}")
     print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print("-" * 80)
 
 
 def print_flag(input_file):
@@ -95,6 +96,7 @@ def print_flag(input_file):
     print()
     print(f"Number of valid rows with non-empty 'command' (X): {valid_with_flag_count}")
     print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print("-" * 80)
 
 
 def print_trait(input_file):
@@ -141,6 +143,7 @@ def print_trait(input_file):
     print()
     print(f"Number of valid rows with non-empty 'trait' (X): {valid_with_trait_count}")
     print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print("-" * 80)
 
 
 def print_others(input_file):
@@ -164,17 +167,14 @@ def print_others(input_file):
     for col in target_columns:
         freq = counters[col] / valid_count if valid_count else 0
         print(f"{col:10} {counters[col]:>6} {freq * 100:9.2f}%")
+    print("-" * 80)
 
 
 if __name__ == "__main__":
     print_unstable_features("./data/all_issues.csv")
-    print()
 
     print_flag("./data/all_issues.csv")
-    print()
 
     print_trait("./data/all_issues.csv")
-    print()
 
     print_others("./data/all_issues.csv")
-    print()
