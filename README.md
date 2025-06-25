@@ -501,7 +501,7 @@ Sized                             32     49.23%
 FnOnce                             8     12.31%
 Iterator                           5      7.69%
 Copy                               4      6.15%
-Clone                              3      4.62%
+FnMut                              3      4.62%
 
 Number of valid rows with non-empty 'trait' (X): 65
 Ratio (X / valid 'Status'): 21.59%
