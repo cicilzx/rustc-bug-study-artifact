@@ -128,9 +128,18 @@ def print_trait(input_file):
     # Compute ratio
     ratio = valid_with_trait_count / valid_count if valid_count else 0
 
+    def is_fn_trait(name):
+        return name.startswith("Fn")
+
     # Count top traits
     counter = Counter(all_traits)
-    top_5 = counter.most_common(5)
+    sorted_traits = sorted(
+        counter.items(),
+        key=lambda x: (-x[1], not is_fn_trait(x[0]), x[0])
+    )
+
+    top_5 = sorted_traits[:5]
+
 
     # Output
     print("Top 5 traits:")
