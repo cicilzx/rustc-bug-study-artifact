@@ -22,7 +22,6 @@ class IssueDataCrawler:
             'state': 'closed',
             'per_page': 100,
             'page': 1,
-            # 'labels': 'C-bug',
             'since': '2022-01-01T00:00:00Z',
         }
         issues = []
@@ -31,11 +30,13 @@ class IssueDataCrawler:
                         'A-mir-opt-inlining', 'A-implied-bounds', 'A-HIR',
                         'A-coercions', 'A-coherence', 'A-coinduction', 'A-const-generics', 'A-DSTs', 'A-mir-opt-GVN', 'A-mir-opt-nrvo', 'A-stable-MIR', 'A-THIR', 'A-zst']
 
-        while True:
+        url = base_url
+        while url:
             labeled_issues = []
-            response = requests.get(base_url, headers=self.header, params=params)
+            response = requests.get(url, headers=self.header, params=params)
             if response.status_code != 200:
                 logging.error(f"Failed to fetch issues. Status code: {response.status_code}")
+                print(params['page'])
                 break
 
             fetched_issues = response.json()
@@ -52,11 +53,24 @@ class IssueDataCrawler:
             issues.extend(filtered_issues)
             logging.info(f"Fetched {len(issues)} issue data.")
 
-            link_header = response.headers.get('Link', '')
-            if 'rel="next"' not in link_header:
-                break
+            # link_header = response.headers.get('Link', '')
+            # if 'rel="next"' not in link_header:
+            #     break
 
-            params['page'] += 1
+            # params['page'] += 1
+            # 获取下一页URL
+            link = response.headers.get("Link", "")
+            next_url = None
+            if link:
+                parts = link.split(",")
+                for part in parts:
+                    if 'rel="next"' in part:
+                        next_url = part[part.find("<")+1:part.find(">")]
+                        break
+
+            url = next_url
+            # 后续请求不再带params，因为next_url中已经包含了所有参数
+            params = None
 
         return issues
 
