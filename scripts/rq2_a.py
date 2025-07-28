@@ -33,7 +33,7 @@ symptom_groups = {
     "2.": ["2. Correctness Issues-Completeness Issues", "2. Correctness Issues-Soundness Issues"],
     "3.": ["3. Miscompilation-Inconsistent Output Issues", "3. Miscompilation-Safe Rust Causes UB"],
     "4.": ["4. Diagnostic Issues-Incorrect Warning/Error", "4. Diagnostic Issues-Improper Fix Suggestion"],
-    "5.": ["5. Misoptimization"]
+    "5.": ["5. Misoptimization-incorrect", "5. Misoptimization-performance"]
 }
 
 # Symptoms to split by Test validity
@@ -60,15 +60,15 @@ for group_prefix, symptoms in symptom_groups.items():
                 count = len(valid_df[(valid_df['Symptoms'] == s) & (valid_df['Test validity'] == vtype)])
                 ratio = count / valid_total if valid_total > 0 else 0
                 subtotal += count
-                print(f"{label.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.2%}'.rjust(col3_width)}")
+                print(f"{label.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.1%}'.rjust(col3_width)}")
         else:
             count = len(valid_df[valid_df['Symptoms'] == s])
             ratio = count / valid_total if valid_total > 0 else 0
             subtotal += count
-            print(f"{s.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.2%}'.rjust(col3_width)}")
-    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal / valid_total:.2%}'.rjust(col3_width)}")
+            print(f"{s.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.1%}'.rjust(col3_width)}")
+    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal / valid_total:.1%}'.rjust(col3_width)}")
     print("-" * line_width)
     grand_total += subtotal
 
 # Print grand total
-print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.2%}'.rjust(col3_width)}")
+print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.1%}'.rjust(col3_width)}")

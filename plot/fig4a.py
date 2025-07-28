@@ -47,7 +47,7 @@ if __name__ == '__main__':
     # Display total count and percentage at the end of each bar
     for i, total in enumerate(total_bugs):
         percent = (total / 301) * 100
-        ax.text(total + 1, i, f'{total} ({percent:.2f}%)', va='center', ha='left', fontsize=14, color='black')
+        ax.text(total + 1, i, f'{total} ({percent:.1f}%)', va='center', ha='left', fontsize=14, color='black')
 
     # Add custom legend
     ax.legend(handles, labels)

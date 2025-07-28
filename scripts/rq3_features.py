@@ -45,11 +45,11 @@ def print_unstable_features(input_file):
     print("-" * 70)
     for feature, count in top_5:
         proportion = count / valid_with_unstable_count if valid_with_unstable_count else 0
-        print(f"{feature:50} {count:>5} {proportion * 100:9.2f}%")
+        print(f"{feature:50} {count:>5} {proportion * 100:9.1f}%")
 
     print()
     print(f"Number of valid rows with non-empty 'unstable features' (X): {valid_with_unstable_count}")
-    print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print(f"Ratio (X / valid 'Status'): {ratio * 100:.1f}%")
     print("-" * 80)
 
 
@@ -91,11 +91,11 @@ def print_flag(input_file):
     print("-" * 60)
     for flag, count in top_5:
         proportion = count / valid_with_flag_count if valid_with_flag_count else 0
-        print(f"{flag:40} {count:>5} {proportion * 100:9.2f}%")
+        print(f"{flag:40} {count:>5} {proportion * 100:9.1f}%")
     
     print()
     print(f"Number of valid rows with non-empty 'command' (X): {valid_with_flag_count}")
-    print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print(f"Ratio (X / valid 'Status'): {ratio * 100:.1f}%")
     print("-" * 80)
 
 
@@ -147,11 +147,11 @@ def print_trait(input_file):
     print("-" * 50)
     for trait, count in top_5:
         proportion = count / valid_with_trait_count if valid_with_trait_count else 0
-        print(f"{trait:30} {count:>5} {proportion * 100:9.2f}%")
+        print(f"{trait:30} {count:>5} {proportion * 100:9.1f}%")
     
     print()
     print(f"Number of valid rows with non-empty 'trait' (X): {valid_with_trait_count}")
-    print(f"Ratio (X / valid 'Status'): {ratio * 100:.2f}%")
+    print(f"Ratio (X / valid 'Status'): {ratio * 100:.1f}%")
     print("-" * 80)
 
 
@@ -175,7 +175,7 @@ def print_others(input_file):
     print("-" * 30)
     for col in target_columns:
         freq = counters[col] / valid_count if valid_count else 0
-        print(f"{col:10} {counters[col]:>6} {freq * 100:9.2f}%")
+        print(f"{col:10} {counters[col]:>6} {freq * 100:9.1f}%")
     print("-" * 80)
 
 

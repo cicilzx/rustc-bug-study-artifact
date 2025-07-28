@@ -66,12 +66,12 @@ for group_name in group_order:
     subtotal = 0
     subtotal_ratio = 0.0
     for label, count, ratio in group:
-        print(f"{label.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.2%}'.rjust(col3_width)}")
+        print(f"{label.ljust(col1_width)}{str(count).rjust(col2_width)}  {f'{ratio:.1%}'.rjust(col3_width)}")
         subtotal += count
         subtotal_ratio += ratio
-    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal_ratio:.2%}'.rjust(col3_width)}")
+    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal_ratio:.1%}'.rjust(col3_width)}")
     print("-" * line_width)
     grand_total += subtotal
 
 # Print final total
-print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.2%}'.rjust(col3_width)}")
+print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.1%}'.rjust(col3_width)}")

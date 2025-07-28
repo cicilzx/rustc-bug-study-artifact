@@ -71,6 +71,6 @@ for symptom_group in ["1.", "2.", "3.", "4.", "5."]:
     for cause in cause_order:
         count = group_counts[symptom_group].get(cause, 0)
         ratio = count / subtotal if subtotal > 0 else 0
-        print(f"{symptom_group.ljust(col1_width)}{cause.ljust(col2_width)}{str(count).rjust(col3_width)}  {f'{ratio:.2%}'.rjust(col4_width)}")
-    print(f"{'Subtotal'.ljust(col1_width)}{' '.ljust(col2_width)}{str(subtotal).rjust(col3_width)}  {f'{1.0:.2%}'.rjust(col4_width)}")
+        print(f"{symptom_group.ljust(col1_width)}{cause.ljust(col2_width)}{str(count).rjust(col3_width)}  {f'{ratio:.1%}'.rjust(col4_width)}")
+    print(f"{'Subtotal'.ljust(col1_width)}{' '.ljust(col2_width)}{str(subtotal).rjust(col3_width)}  {f'{1.0:.1%}'.rjust(col4_width)}")
     print("-" * line_width)

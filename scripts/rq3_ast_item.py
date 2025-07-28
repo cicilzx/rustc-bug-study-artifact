@@ -42,4 +42,4 @@ results.sort(key=lambda x: x[2], reverse=True)
 # 打印结果
 print(f"{'Node Type':<15} {'Total':>10} {'Prevalence':>12} {'Average':>10} {'Max':>10}")
 for node, total, prevalence, average, max_count in results:
-    print(f"{node:<15} {total:>10} {prevalence:>12.2%} {average:>10.2f} {max_count:>10}")
+    print(f"{node:<15} {total:>10} {prevalence:>12.1%} {average:>10.1f} {max_count:>10}")

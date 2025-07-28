@@ -20,6 +20,7 @@ split_labels = {'A-THIR', 'A-stable-MIR', 'A-coherence'}
 
 label_counter = Counter()
 
+# Read primary issue labels
 with open('./data/all_issues.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
@@ -36,10 +37,27 @@ with open('./data/all_issues.csv', newline='', encoding='utf-8') as csvfile:
                 print("Parse error, skipped:", labels_str)
                 continue
 
-# Print output with separators
+# Print main output with separators
 print(f"{'Label':<30}Count")
 print("=" * 40)
 for label in target_labels:
     print(f"{label:<30}{label_counter[label]}")
     if label in split_labels:
         print("-" * 40)
+
+# Read backend issue labels
+backend_labels = {'A-LLVM', 'A-gcc', 'A-cranelift'}
+backend_counter = Counter()
+
+with open('./data/backend_issues.csv', newline='', encoding='utf-8') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        label = row.get('tags', '')
+        if label in backend_labels:
+            backend_counter[label] += 1
+
+# Print backend block
+print("\nBackend (Excluded)")
+print("=" * 40)
+for label in ['A-LLVM', 'A-gcc', 'A-cranelift']:
+    print(f"{label:<30}{backend_counter[label]}")

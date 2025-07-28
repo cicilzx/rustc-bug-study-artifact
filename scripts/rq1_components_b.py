@@ -80,7 +80,7 @@ for phase_name, stages in phase_to_stages.items():
             count = len(stage_df[stage_df['Cause Group'] == cause])
             ratio = count / phase_total if phase_total > 0 else 0
             stage_subtotal += count
-            print(f"{stage.ljust(col1_width)}{cause.rjust(col2_width)}  {f'{ratio:.2%}'.rjust(col3_width)}")
-        print(f"{'Subtotal'.ljust(col1_width)}{str(stage_subtotal).rjust(col2_width)}  {f'{stage_subtotal / phase_total:.2%}'.rjust(col3_width)}")
+            print(f"{stage.ljust(col1_width)}{cause.rjust(col2_width)}  {f'{ratio:.1%}'.rjust(col3_width)}")
+        print(f"{'Subtotal'.ljust(col1_width)}{str(stage_subtotal).rjust(col2_width)}  {f'{stage_subtotal / phase_total:.1%}'.rjust(col3_width)}")
         print("-" * line_width)
         grand_total += stage_subtotal

@@ -15,8 +15,8 @@ def print_stats(name, line_counts):
     
     print(f"{name.ljust(col1_width)}{'Value'.rjust(col2_width)}")
     print("-" * (col1_width + col2_width))
-    print(f"{'Mean'.ljust(col1_width)}{line_counts.mean():>{col2_width}.2f}")
-    print(f"{'Median'.ljust(col1_width)}{line_counts.median():>{col2_width}.2f}")
+    print(f"{'Mean'.ljust(col1_width)}{line_counts.mean():>{col2_width}.1f}")
+    print(f"{'Median'.ljust(col1_width)}{line_counts.median():>{col2_width}.1f}")
     
     
     if len(non_zero.unique()) > 1:

@@ -135,6 +135,12 @@ A-coherence                   14
 ----------------------------------------
 A-lifetimes                   70
 A-borrow-checker              45
+
+Backend (Excluded)
+========================================
+A-LLVM                        275
+A-gcc                         2
+A-cranelift                   10
 ```
 
 To reproduce Table 2, please run the following script to print statistics related to our bug collection phases.
@@ -184,26 +190,26 @@ The above script prints the following:
 ```
 Bug Cause                        Count     Ratio
 --------------------------------------------------
-Trait & Bound                       37    12.29%
-Opaque types                        38    12.62%
-New solver                           7     2.33%
-Well-formedness                      9     2.99%
-Subtotal                            91    30.23%
+Trait & Bound                       37     12.3%
+Opaque types                        38     12.6%
+New solver                           7      2.3%
+Well-formedness                      9      3.0%
+Subtotal                            91     30.2%
 --------------------------------------------------
-Borrow & Move                        7     2.33%
-Lifetime                            34    11.30%
-Subtotal                            41    13.62%
+Borrow & Move                        7      2.3%
+Lifetime                            34     11.3%
+Subtotal                            41     13.6%
 --------------------------------------------------
-Wrong implementations               34    11.30%
-Missing cases                       12     3.99%
-Subtotal                            46    15.28%
+Wrong implementations               34     11.3%
+Missing cases                       12      4.0%
+Subtotal                            46     15.3%
 --------------------------------------------------
-Basic structure                     38    12.62%
-Error handling & Reporting          75    24.92%
-Compatibility                       10     3.32%
-Subtotal                           123    40.86%
+Basic structure                     38     12.6%
+Error handling & Reporting          75     24.9%
+Compatibility                       10      3.3%
+Subtotal                           123     40.9%
 --------------------------------------------------
-Total                              301   100.00%
+Total                              301    100.0%
 ```
 
 As for the bug prone compilation stages, please run the following script to reproduce Fig. 4 (a):
@@ -262,56 +268,45 @@ python3 ./scripts/rq1_components_b.py
 
 The above script prints the following:
 ```
-Stage                                             Cause       Ratio
----------------------------------------------------------------------
-2. HIR-type & wf check               Type System Errors      25.19%
-2. HIR-type & wf check      Ownership & Lifetime Errors       2.96%
-2. HIR-type & wf check          MIR Optimization Errors       0.00%
-2. HIR-type & wf check                   General Errors      22.96%
-Subtotal                                             69      51.11%
----------------------------------------------------------------------
-2. HIR-trait solving                 Type System Errors      17.78%
-2. HIR-trait solving        Ownership & Lifetime Errors       1.48%
-2. HIR-trait solving            MIR Optimization Errors       0.00%
-2. HIR-trait solving                     General Errors       8.15%
-Subtotal                                             37      27.41%
----------------------------------------------------------------------
-2. HIR-Type Infer                    Type System Errors       1.48%
-2. HIR-Type Infer           Ownership & Lifetime Errors       4.44%
-2. HIR-Type Infer               MIR Optimization Errors       0.00%
-2. HIR-Type Infer                        General Errors       1.48%
-Subtotal                                             10       7.41%
----------------------------------------------------------------------
-2. HIR-report                        Type System Errors       0.74%
-2. HIR-report               Ownership & Lifetime Errors       2.22%
-2. HIR-report                   MIR Optimization Errors       0.00%
-2. HIR-report                            General Errors      11.11%
-Subtotal                                             19      14.07%
----------------------------------------------------------------------
-3. MIR-MIR Transform                 Type System Errors       1.89%
-3. MIR-MIR Transform        Ownership & Lifetime Errors       4.72%
-3. MIR-MIR Transform            MIR Optimization Errors      42.45%
-3. MIR-MIR Transform                     General Errors       0.94%
-Subtotal                                             53      50.00%
----------------------------------------------------------------------
-3. MIR-Borrow Check                  Type System Errors      16.04%
-3. MIR-Borrow Check         Ownership & Lifetime Errors       4.72%
-3. MIR-Borrow Check             MIR Optimization Errors       0.94%
-3. MIR-Borrow Check                      General Errors       3.77%
-Subtotal                                             27      25.47%
----------------------------------------------------------------------
-3. MIR-Dataflow Analysis             Type System Errors       0.00%
-3. MIR-Dataflow Analysis    Ownership & Lifetime Errors       0.00%
-3. MIR-Dataflow Analysis        MIR Optimization Errors       0.00%
-3. MIR-Dataflow Analysis                 General Errors       8.49%
-Subtotal                                              9       8.49%
----------------------------------------------------------------------
-3. MIR-report                        Type System Errors       0.00%
-3. MIR-report               Ownership & Lifetime Errors       4.72%
-3. MIR-report                   MIR Optimization Errors       0.00%
-3. MIR-report                            General Errors      11.32%
-Subtotal                                             17      16.04%
----------------------------------------------------------------------
+Stage                                Cause       Ratio
+--------------------------------------------------------
+1. AST                  Type System Errors        0.3%
+1. AST         Ownership & Lifetime Errors        3.7%
+1. AST             MIR Optimization Errors        0.0%
+1. AST                      General Errors        4.0%
+Subtotal                                24        8.0%
+--------------------------------------------------------
+2. HIR                  Type System Errors       20.3%
+2. HIR         Ownership & Lifetime Errors        5.0%
+2. HIR             MIR Optimization Errors        0.0%
+2. HIR                      General Errors       19.6%
+Subtotal                               135       44.9%
+--------------------------------------------------------
+3. MIR                  Type System Errors        6.3%
+3. MIR         Ownership & Lifetime Errors        5.0%
+3. MIR             MIR Optimization Errors       15.3%
+3. MIR                      General Errors        8.6%
+Subtotal                               106       35.2%
+--------------------------------------------------------
+4. Code Gen             Type System Errors        0.0%
+4. Code Gen    Ownership & Lifetime Errors        0.0%
+4. Code Gen        MIR Optimization Errors        0.0%
+4. Code Gen                 General Errors        1.7%
+Subtotal                                 5        1.7%
+--------------------------------------------------------
+5. Utility              Type System Errors        3.3%
+5. Utility     Ownership & Lifetime Errors        0.0%
+5. Utility         MIR Optimization Errors        0.0%
+5. Utility                  General Errors        4.7%
+Subtotal                                24        8.0%
+--------------------------------------------------------
+6. LLVM                 Type System Errors        0.0%
+6. LLVM        Ownership & Lifetime Errors        0.0%
+6. LLVM            MIR Optimization Errors        0.0%
+6. LLVM                     General Errors        2.3%
+Subtotal                                 7        2.3%
+--------------------------------------------------------
+Total                                  301      100.0%
 ```
 
 #### Data Visualization (Optional)
@@ -338,27 +333,28 @@ It prints the following:
 ```
 Symptom                                                   Count       Ratio
 -----------------------------------------------------------------------------
-1. Crash-Front-end Panic(valid)                              42      13.95%
-1. Crash-Front-end Panic(invalid)                            75      24.92%
-1. Crash-Back-end Crash                                       3       1.00%
-Subtotal                                                    120      39.87%
+1. Crash-Front-end Panic(valid)                              42       14.0%
+1. Crash-Front-end Panic(invalid)                            75       24.9%
+1. Crash-Back-end Crash                                       3        1.0%
+Subtotal                                                    120       39.9%
 -----------------------------------------------------------------------------
-2. Correctness Issues-Completeness Issues                    56      18.60%
-2. Correctness Issues-Soundness Issues                       22       7.31%
-Subtotal                                                     78      25.91%
+2. Correctness Issues-Completeness Issues                    56       18.6%
+2. Correctness Issues-Soundness Issues                       22        7.3%
+Subtotal                                                     78       25.9%
 -----------------------------------------------------------------------------
-3. Miscompilation-Inconsistent Output Issues                 18       5.98%
-3. Miscompilation-Safe Rust Causes UB                        12       3.99%
-Subtotal                                                     30       9.97%
+3. Miscompilation-Inconsistent Output Issues                 18        6.0%
+3. Miscompilation-Safe Rust Causes UB                        12        4.0%
+Subtotal                                                     30       10.0%
 -----------------------------------------------------------------------------
-4. Diagnostic Issues-Incorrect Warning/Error                 20       6.64%
-4. Diagnostic Issues-Improper Fix Suggestion                 38      12.62%
-Subtotal                                                     58      19.27%
+4. Diagnostic Issues-Incorrect Warning/Error                 20        6.6%
+4. Diagnostic Issues-Improper Fix Suggestion                 38       12.6%
+Subtotal                                                     58       19.3%
 -----------------------------------------------------------------------------
-5. Misoptimization                                           15       4.98%
-Subtotal                                                     15       4.98%
+5. Misoptimization-incorrect                                  9        3.0%
+5. Misoptimization-performance                                6        2.0%
+Subtotal                                                     15        5.0%
 -----------------------------------------------------------------------------
-Total                                                       301     100.00%
+Total                                                       301      100.0%
 ```
 
 
@@ -372,35 +368,35 @@ It prints the following:
 ```
 Symptom GroupCause                              Count       Ratio
 ----------------------------------------------------------------
-1.        Type System Errors                    30      25.00%
-1.        Ownership & Lifetime Errors            3       2.50%
-1.        MIR Optimization Errors               19      15.83%
-1.        General Errors                        68      56.67%
-Subtotal                                       120     100.00%
+1.        Type System Errors                    30       25.0%
+1.        Ownership & Lifetime Errors            3        2.5%
+1.        MIR Optimization Errors               19       15.8%
+1.        General Errors                        68       56.7%
+Subtotal                                       120      100.0%
 ----------------------------------------------------------------
-2.        Type System Errors                    43      55.13%
-2.        Ownership & Lifetime Errors           17      21.79%
-2.        MIR Optimization Errors                7       8.97%
-2.        General Errors                        11      14.10%
-Subtotal                                        78     100.00%
+2.        Type System Errors                    43       55.1%
+2.        Ownership & Lifetime Errors           17       21.8%
+2.        MIR Optimization Errors                7        9.0%
+2.        General Errors                        11       14.1%
+Subtotal                                        78      100.0%
 ----------------------------------------------------------------
-3.        Type System Errors                     5      16.67%
-3.        Ownership & Lifetime Errors            4      13.33%
-3.        MIR Optimization Errors               12      40.00%
-3.        General Errors                         9      30.00%
-Subtotal                                        30     100.00%
+3.        Type System Errors                     5       16.7%
+3.        Ownership & Lifetime Errors            4       13.3%
+3.        MIR Optimization Errors               12       40.0%
+3.        General Errors                         9       30.0%
+Subtotal                                        30      100.0%
 ----------------------------------------------------------------
-4.        Type System Errors                    12      20.69%
-4.        Ownership & Lifetime Errors           16      27.59%
-4.        MIR Optimization Errors                1       1.72%
-4.        General Errors                        29      50.00%
-Subtotal                                        58     100.00%
+4.        Type System Errors                    12       20.7%
+4.        Ownership & Lifetime Errors           16       27.6%
+4.        MIR Optimization Errors                1        1.7%
+4.        General Errors                        29       50.0%
+Subtotal                                        58      100.0%
 ----------------------------------------------------------------
-5.        Type System Errors                     1       6.67%
-5.        Ownership & Lifetime Errors            1       6.67%
-5.        MIR Optimization Errors                7      46.67%
-5.        General Errors                         6      40.00%
-Subtotal                                        15     100.00%
+5.        Type System Errors                     1        6.7%
+5.        Ownership & Lifetime Errors            1        6.7%
+5.        MIR Optimization Errors                7       46.7%
+5.        General Errors                         6       40.0%
+Subtotal                                        15      100.0%
 ----------------------------------------------------------------
 ```
 
@@ -420,15 +416,15 @@ It prints the following:
 ```
 Test case (original)             Value
 --------------------------------------
-Mean                             17.83
-Median                           12.00
+Mean                              17.8
+Median                            12.0
 Second smallest non-zero             2
 Max                                346
 
 Test case (reduced)              Value
 --------------------------------------
-Mean                             14.18
-Median                           11.00
+Mean                              14.2
+Median                            11.0
 Second smallest non-zero             2
 Max                                123
 ```
@@ -441,23 +437,23 @@ python3 ./scripts/rq3_ast_item.py
 It prints the following:
 ```
 Node Type            Total   Prevalence    Average        Max
-Function               524      100.00%       1.93          8
-Struct                 130       37.64%       1.27          4
-Impl                   157       37.64%       1.54          6
-Trait                  144       34.32%       1.55          6
-Use                     64       20.30%       1.16          3
-Type                    29        7.38%       1.45          6
-Enum                     8        2.95%       1.00          1
-Macro                   11        2.95%       1.38          2
-ExternCrate              7        2.58%       1.00          1
-Static                   7        2.21%       1.17          2
-Mod                      8        1.85%       1.60          3
-Const                    5        1.85%       1.00          1
-Verbatim                 4        1.11%       1.33          2
-ForeignMod               2        0.74%       1.00          1
-TraitAlias               1        0.37%       1.00          1
-Union                    0        0.00%       0.00          0
-Other                    0        0.00%       0.00          0
+Function               524       100.0%        1.9          8
+Struct                 130        37.6%        1.3          4
+Impl                   157        37.6%        1.5          6
+Trait                  144        34.3%        1.5          6
+Use                     64        20.3%        1.2          3
+Type                    29         7.4%        1.4          6
+Enum                     8         3.0%        1.0          1
+Macro                   11         3.0%        1.4          2
+ExternCrate              7         2.6%        1.0          1
+Static                   7         2.2%        1.2          2
+Mod                      8         1.8%        1.6          3
+Const                    5         1.8%        1.0          1
+Verbatim                 4         1.1%        1.3          2
+ForeignMod               2         0.7%        1.0          1
+TraitAlias               1         0.4%        1.0          1
+Union                    0         0.0%        0.0          0
+Other                    0         0.0%        0.0          0
 ```
 
 To reproduce Table 6, please run the following script to get the information of `Type` node:
@@ -467,22 +463,22 @@ python3 ./scripts/rq3_ast_type.py
 It prints the following:
 ```
 Node Type            Total   Prevalence    Average        Max
-Path                  1262       88.19%       5.28         41
-Reference              276       43.91%       2.32         10
-Tuple                  161       30.26%       1.96          8
-ImplTrait               87       20.66%       1.55         10
-Array                   55       11.44%       1.77         10
-TraitObject             49       10.70%       1.69          3
-Ptr                     35        7.75%       1.67          4
-Infer                   18        4.80%       1.38          2
-BareFn                  21        4.06%       1.91          5
-Slice                   13        2.95%       1.62          3
-Never                    1        0.37%       1.00          1
-Paren                    1        0.37%       1.00          1
-Group                    0        0.00%       0.00          0
-Macro                    0        0.00%       0.00          0
-Verbatim                 0        0.00%       0.00          0
-Other                    0        0.00%       0.00          0
+Path                  1262        88.2%        5.3         41
+Reference              276        43.9%        2.3         10
+Tuple                  161        30.3%        2.0          8
+ImplTrait               87        20.7%        1.6         10
+Array                   55        11.4%        1.8         10
+TraitObject             49        10.7%        1.7          3
+Ptr                     35         7.7%        1.7          4
+Infer                   18         4.8%        1.4          2
+BareFn                  21         4.1%        1.9          5
+Slice                   13         3.0%        1.6          3
+Never                    1         0.4%        1.0          1
+Paren                    1         0.4%        1.0          1
+Group                    0         0.0%        0.0          0
+Macro                    0         0.0%        0.0          0
+Verbatim                 0         0.0%        0.0          0
+Other                    0         0.0%        0.0          0
 ```
 
 To reproduce Table 7, please run the folllowing script to get all the information:
@@ -495,46 +491,46 @@ It prints the following:
 Top 5 unstable features:
 Feature Line                                       Count Proportion
 ----------------------------------------------------------------------
-#![feature(generic_const_exprs)]                      13     17.81%
-#![feature(type_alias_impl_trait)]                    11     15.07%
-#![feature(core_intrinsics)]                           9     12.33%
-#![feature(custom_mir)]                                8     10.96%
-#![feature(async_closure)]                             3      4.11%
+#![feature(generic_const_exprs)]                      13      17.8%
+#![feature(type_alias_impl_trait)]                    11      15.1%
+#![feature(core_intrinsics)]                           9      12.3%
+#![feature(custom_mir)]                                8      11.0%
+#![feature(async_closure)]                             3       4.1%
 
 Number of valid rows with non-empty 'unstable features' (X): 73
-Ratio (X / valid 'Status'): 24.25%
+Ratio (X / valid 'Status'): 24.3%
 --------------------------------------------------------------------------------
 Top 5 flags:
 Flag                                     Count Proportion
 ------------------------------------------------------------
--Zmir-opt-level=X                           26     45.61%
--Zmir-enable-passes=+X                       9     15.79%
-+nightly                                     8     14.04%
--Copt-level=X                                8     14.04%
---edition=X                                  7     12.28%
+-Zmir-opt-level=X                           26      45.6%
+-Zmir-enable-passes=+X                       9      15.8%
++nightly                                     8      14.0%
+-Copt-level=X                                8      14.0%
+--edition=X                                  7      12.3%
 
 Number of valid rows with non-empty 'command' (X): 57
-Ratio (X / valid 'Status'): 18.94%
+Ratio (X / valid 'Status'): 18.9%
 --------------------------------------------------------------------------------
 Top 5 traits:
 Trait                          Count Proportion
 --------------------------------------------------
-Sized                             32     49.23%
-FnOnce                             8     12.31%
-Iterator                           5      7.69%
-Copy                               4      6.15%
-FnMut                              3      4.62%
+Sized                             32      49.2%
+FnOnce                             8      12.3%
+Iterator                           5       7.7%
+Copy                               4       6.2%
+FnMut                              3       4.6%
 
 Number of valid rows with non-empty 'trait' (X): 65
-Ratio (X / valid 'Status'): 21.59%
+Ratio (X / valid 'Status'): 21.6%
 --------------------------------------------------------------------------------
 Feature     Count  Frequency
 ------------------------------
-Lifetime      104     34.55%
-std            56     18.60%
-dyn            30      9.97%
-async          22      7.31%
-core           19      6.31%
+Lifetime      104      34.6%
+std            56      18.6%
+dyn            30      10.0%
+async          22       7.3%
+core           19       6.3%
 --------------------------------------------------------------------------------
 ```
 

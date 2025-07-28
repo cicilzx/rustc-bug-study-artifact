@@ -52,11 +52,11 @@ if __name__ == '__main__':
         if i < 4:
             total = 106
             percent = (value / total) * 100
-            plt.text(value + 1, y_shifted[i], f'{value} ({percent:.2f}%)', va='center', fontsize=12)
+            plt.text(value + 1, y_shifted[i], f'{value} ({percent:.1f}%)', va='center', fontsize=12)
         else:
             total = 135
             percent = (value / total) * 100
-            plt.text(value + 1, y_shifted[i], f'{value} ({percent:.2f}%)', va='center', fontsize=12)
+            plt.text(value + 1, y_shifted[i], f'{value} ({percent:.1f}%)', va='center', fontsize=12)
 
     # Add dashed line between MIR and HIR sections
     plt.axhline(y=y_shifted[3] + 0.75, color='black', linestyle='--', linewidth=1.25)

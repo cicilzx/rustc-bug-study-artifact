@@ -85,10 +85,10 @@ for stage in stage_groups:
         count = stage_cause_counts[stage].get(cause, 0)
         ratio = count / valid_total
         subtotal += count
-        print(f"{stage.ljust(col1_width)}{cause.rjust(col2_width)}  {f'{ratio:.2%}'.rjust(col3_width)}")
-    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal / valid_total:.2%}'.rjust(col3_width)}")
+        print(f"{stage.ljust(col1_width)}{cause.rjust(col2_width)}  {f'{ratio:.1%}'.rjust(col3_width)}")
+    print(f"{'Subtotal'.ljust(col1_width)}{str(subtotal).rjust(col2_width)}  {f'{subtotal / valid_total:.1%}'.rjust(col3_width)}")
     print("-" * line_width)
     grand_total += subtotal
 
 # Print grand total
-print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.2%}'.rjust(col3_width)}")
+print(f"{'Total'.ljust(col1_width)}{str(grand_total).rjust(col2_width)}  {f'{grand_total / valid_total:.1%}'.rjust(col3_width)}")
