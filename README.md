@@ -268,45 +268,56 @@ python3 ./scripts/rq1_components_b.py
 
 The above script prints the following:
 ```
-Stage                                Cause       Ratio
---------------------------------------------------------
-1. AST                  Type System Errors        0.3%
-1. AST         Ownership & Lifetime Errors        3.7%
-1. AST             MIR Optimization Errors        0.0%
-1. AST                      General Errors        4.0%
-Subtotal                                24        8.0%
---------------------------------------------------------
-2. HIR                  Type System Errors       20.3%
-2. HIR         Ownership & Lifetime Errors        5.0%
-2. HIR             MIR Optimization Errors        0.0%
-2. HIR                      General Errors       19.6%
-Subtotal                               135       44.9%
---------------------------------------------------------
-3. MIR                  Type System Errors        6.3%
-3. MIR         Ownership & Lifetime Errors        5.0%
-3. MIR             MIR Optimization Errors       15.3%
-3. MIR                      General Errors        8.6%
-Subtotal                               106       35.2%
---------------------------------------------------------
-4. Code Gen             Type System Errors        0.0%
-4. Code Gen    Ownership & Lifetime Errors        0.0%
-4. Code Gen        MIR Optimization Errors        0.0%
-4. Code Gen                 General Errors        1.7%
-Subtotal                                 5        1.7%
---------------------------------------------------------
-5. Utility              Type System Errors        3.3%
-5. Utility     Ownership & Lifetime Errors        0.0%
-5. Utility         MIR Optimization Errors        0.0%
-5. Utility                  General Errors        4.7%
-Subtotal                                24        8.0%
---------------------------------------------------------
-6. LLVM                 Type System Errors        0.0%
-6. LLVM        Ownership & Lifetime Errors        0.0%
-6. LLVM            MIR Optimization Errors        0.0%
-6. LLVM                     General Errors        2.3%
-Subtotal                                 7        2.3%
---------------------------------------------------------
-Total                                  301      100.0%
+Stage                                             Cause       Ratio
+---------------------------------------------------------------------
+2. HIR-type & wf check               Type System Errors       25.2%
+2. HIR-type & wf check      Ownership & Lifetime Errors        3.0%
+2. HIR-type & wf check          MIR Optimization Errors        0.0%
+2. HIR-type & wf check                   General Errors       23.0%
+Subtotal                                             69       51.1%
+---------------------------------------------------------------------
+2. HIR-trait solving                 Type System Errors       17.8%
+2. HIR-trait solving        Ownership & Lifetime Errors        1.5%
+2. HIR-trait solving            MIR Optimization Errors        0.0%
+2. HIR-trait solving                     General Errors        8.1%
+Subtotal                                             37       27.4%
+---------------------------------------------------------------------
+2. HIR-Type Infer                    Type System Errors        1.5%
+2. HIR-Type Infer           Ownership & Lifetime Errors        4.4%
+2. HIR-Type Infer               MIR Optimization Errors        0.0%
+2. HIR-Type Infer                        General Errors        1.5%
+Subtotal                                             10        7.4%
+---------------------------------------------------------------------
+2. HIR-report                        Type System Errors        0.7%
+2. HIR-report               Ownership & Lifetime Errors        2.2%
+2. HIR-report                   MIR Optimization Errors        0.0%
+2. HIR-report                            General Errors       11.1%
+Subtotal                                             19       14.1%
+---------------------------------------------------------------------
+3. MIR-MIR Transform                 Type System Errors        1.9%
+3. MIR-MIR Transform        Ownership & Lifetime Errors        4.7%
+3. MIR-MIR Transform            MIR Optimization Errors       42.5%
+3. MIR-MIR Transform                     General Errors        0.9%
+Subtotal                                             53       50.0%
+---------------------------------------------------------------------
+3. MIR-Borrow Check                  Type System Errors       16.0%
+3. MIR-Borrow Check         Ownership & Lifetime Errors        4.7%
+3. MIR-Borrow Check             MIR Optimization Errors        0.9%
+3. MIR-Borrow Check                      General Errors        3.8%
+Subtotal                                             27       25.5%
+---------------------------------------------------------------------
+3. MIR-Dataflow Analysis             Type System Errors        0.0%
+3. MIR-Dataflow Analysis    Ownership & Lifetime Errors        0.0%
+3. MIR-Dataflow Analysis        MIR Optimization Errors        0.0%
+3. MIR-Dataflow Analysis                 General Errors        8.5%
+Subtotal                                              9        8.5%
+---------------------------------------------------------------------
+3. MIR-report                        Type System Errors        0.0%
+3. MIR-report               Ownership & Lifetime Errors        4.7%
+3. MIR-report                   MIR Optimization Errors        0.0%
+3. MIR-report                            General Errors       11.3%
+Subtotal                                             17       16.0%
+---------------------------------------------------------------------
 ```
 
 #### Data Visualization (Optional)
