@@ -222,43 +222,43 @@ The above script prints the following:
 ```
 Stage                                Cause       Ratio
 --------------------------------------------------------
-1. AST                  Type System Errors       0.33%
-1. AST         Ownership & Lifetime Errors       3.65%
-1. AST             MIR Optimization Errors       0.00%
-1. AST                      General Errors       3.99%
-Subtotal                                24       7.97%
+1. AST                  Type System Errors        0.3%
+1. AST         Ownership & Lifetime Errors        3.7%
+1. AST             MIR Optimization Errors        0.0%
+1. AST                      General Errors        4.0%
+Subtotal                                24        8.0%
 --------------------------------------------------------
-2. HIR                  Type System Errors      20.27%
-2. HIR         Ownership & Lifetime Errors       4.98%
-2. HIR             MIR Optimization Errors       0.00%
-2. HIR                      General Errors      19.60%
-Subtotal                               135      44.85%
+2. HIR                  Type System Errors       20.3%
+2. HIR         Ownership & Lifetime Errors        5.0%
+2. HIR             MIR Optimization Errors        0.0%
+2. HIR                      General Errors       19.6%
+Subtotal                               135       44.9%
 --------------------------------------------------------
-3. MIR                  Type System Errors       6.31%
-3. MIR         Ownership & Lifetime Errors       4.98%
-3. MIR             MIR Optimization Errors      15.28%
-3. MIR                      General Errors       8.64%
-Subtotal                               106      35.22%
+3. MIR                  Type System Errors        6.3%
+3. MIR         Ownership & Lifetime Errors        5.0%
+3. MIR             MIR Optimization Errors       15.3%
+3. MIR                      General Errors        8.6%
+Subtotal                               106       35.2%
 --------------------------------------------------------
-4. Code Gen             Type System Errors       0.00%
-4. Code Gen    Ownership & Lifetime Errors       0.00%
-4. Code Gen        MIR Optimization Errors       0.00%
-4. Code Gen                 General Errors       1.66%
-Subtotal                                 5       1.66%
+4. Code Gen             Type System Errors        0.0%
+4. Code Gen    Ownership & Lifetime Errors        0.0%
+4. Code Gen        MIR Optimization Errors        0.0%
+4. Code Gen                 General Errors        1.7%
+Subtotal                                 5        1.7%
 --------------------------------------------------------
-5. Utility              Type System Errors       3.32%
-5. Utility     Ownership & Lifetime Errors       0.00%
-5. Utility         MIR Optimization Errors       0.00%
-5. Utility                  General Errors       4.65%
-Subtotal                                24       7.97%
+5. Utility              Type System Errors        3.3%
+5. Utility     Ownership & Lifetime Errors        0.0%
+5. Utility         MIR Optimization Errors        0.0%
+5. Utility                  General Errors        4.7%
+Subtotal                                24        8.0%
 --------------------------------------------------------
-6. LLVM                 Type System Errors       0.00%
-6. LLVM        Ownership & Lifetime Errors       0.00%
-6. LLVM            MIR Optimization Errors       0.00%
-6. LLVM                     General Errors       2.33%
-Subtotal                                 7       2.33%
+6. LLVM                 Type System Errors        0.0%
+6. LLVM        Ownership & Lifetime Errors        0.0%
+6. LLVM            MIR Optimization Errors        0.0%
+6. LLVM                     General Errors        2.3%
+Subtotal                                 7        2.3%
 --------------------------------------------------------
-Total                                  301     100.00%
+Total                                  301      100.0%
 ```
 
 similarly, please run the following script to reproduce Fig. 4 (b):
