@@ -12,8 +12,8 @@ if __name__ == '__main__':
     colors = ['#26557b', '#397db7', '#57b1ab', '#8ecfb0', '#d5ecbb', '#fed993', '#f99655', '#eb6046', '#ca324c']
     custom_colors = [colors[1], colors[0], colors[6], colors[2]]
 
-    categories = ['MIR Report', 'Dataflow Analysis', 'Borrow Checking', 'MIR Transformation',
-                  'HIR Report', 'Type Inference', 'Trait Solving', 'Type & WF Checking']
+    categories = ['MIR Diagnostics', 'Dataflow Analysis', 'Borrow Checking', 'MIR Transformation',
+                  'HIR Diagnostics', 'Type Inference', 'Trait Solving', 'Type & WF Checking']
     values = [17, 9, 27, 53, 19, 10, 37, 69]
 
     causes = ['Type System Errors', 'Ownership & Lifetime Errors', 'MIR Optimization Errors', 'General Errors']
