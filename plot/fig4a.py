@@ -6,7 +6,8 @@ if __name__ == '__main__':
     # Set seaborn theme
     sns.set_theme(style="darkgrid")
     plt.tick_params(labelsize=22)
-    plt.rcParams['pdf.use14corefonts'] = True
+    plt.rcParams['pdf.fonttype'] = 42
+    # plt.rcParams['pdf.use14corefonts'] = True
 
     # Data
     stages = ['6. LLVM', '5. Utility', '4. Code Gen', '3. MIR', '2. HIR', '1. AST']

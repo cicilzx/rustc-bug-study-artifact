@@ -6,7 +6,8 @@ if __name__ == '__main__':
     # Set seaborn theme
     sns.set_theme(style="darkgrid")
     plt.tick_params(labelsize=22)
-    plt.rcParams['pdf.use14corefonts'] = True
+    plt.rcParams['pdf.fonttype'] = 42
+    # plt.rcParams['pdf.use14corefonts'] = True
 
     # Data
     bug_types = ['Misoptimization', 'Diagnostic Issues', 'Miscompilation', 'Correctness Issues', 'Crash']

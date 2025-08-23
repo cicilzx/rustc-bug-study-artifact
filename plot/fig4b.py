@@ -6,7 +6,8 @@ if __name__ == '__main__':
     # Set seaborn theme
     sns.set_theme(style="darkgrid")
     plt.tick_params(labelsize=12)
-    plt.rcParams['pdf.use14corefonts'] = True
+    plt.rcParams['pdf.fonttype'] = 42
+    # plt.rcParams['pdf.use14corefonts'] = True
 
     palette = sns.color_palette()
     colors = ['#26557b', '#397db7', '#57b1ab', '#8ecfb0', '#d5ecbb', '#fed993', '#f99655', '#eb6046', '#ca324c']
@@ -19,11 +20,11 @@ if __name__ == '__main__':
     causes = ['Type System Errors', 'Ownership & Lifetime Errors', 'MIR Optimization Errors', 'General Errors']
 
     bug_counts = {
-        'MIR Report': [0, 5, 0, 12],
+        'MIR Diagnostics': [0, 5, 0, 12],
         'Dataflow Analysis': [0, 0, 0, 9],
         'Borrow Checking': [17, 5, 1, 4],
         'MIR Transformation': [2, 5, 45, 1],
-        'HIR Report': [1, 3, 0, 15],
+        'HIR Diagnostics': [1, 3, 0, 15],
         'Type Inference': [2, 6, 0, 2],
         'Trait Solving': [24, 2, 0, 11],
         'Type & WF Checking': [34, 4, 0, 31]
